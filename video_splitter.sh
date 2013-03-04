@@ -3,8 +3,8 @@
 
 #Usage is <start> <mins> video.avi
 
-temp_name=$(basename "$3" ".avi")'_temp.avi'
-new_name=$(basename "$3" ".avi")'_split.avi'
-mencoder -ss $1 -oac copy -ovc copy "$3" -o "$temp_name"
-mencoder -endpos $2 -oac copy -ovc copy "$temp_name" -o "$new_name"
-rm "$temp_name"
+temp_name=$(basename "$3")
+extension="${temp_name##*.}"
+temp_name="${temp_name%.*}"_split
+new_name=$temp_name.$extension
+ffmpeg -i "$3" -ss $1 -t $2 -c:v copy -c:a copy "$new_name"
