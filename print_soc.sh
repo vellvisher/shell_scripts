@@ -17,5 +17,5 @@ clean_up="rm $file_name $ps_file_name"
 convert_print_cleanup_command="$convert_command && $print_command && $clean_up"
 
 # No soc defined
-scp $1 $soc_username@sunfire.comp.nus.edu.sg:
+scp "$1" $soc_username@sunfire.comp.nus.edu.sg:
 ssh $soc_username@sunfire.comp.nus.edu.sg $convert_print_cleanup_command
